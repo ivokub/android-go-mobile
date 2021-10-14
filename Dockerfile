@@ -95,7 +95,7 @@ RUN cd $GOMOBILEPATH/src; \
        cd golang.org/x; \
        git clone https://github.com/golang/mobile.git; \
        cd mobile; \
-       git checkout bdb1ca9a1e083af5929a8214e8a056d638ebbf2d;
+       git checkout 34ab1303b554208641230536476d5bb2f750d12e;
 
 RUN go get golang.org/x/mobile/cmd/gomobile
 RUN go get golang.org/x/mobile/cmd/gobind
