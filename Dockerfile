@@ -6,8 +6,8 @@ FROM openjdk:11
 ENV SDK_URL="https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip" \
     ANDROID_HOME="/usr/local/android-sdk" \
     ANDROID_SDK=$ANDROID_HOME \
-    ANDROID_VERSION=29 \
-    ANDROID_BUILD_TOOLS_VERSION=30.0.2
+    ANDROID_VERSION=28 \
+    ANDROID_BUILD_TOOLS_VERSION=31.0.0
 
 ## Download Android SDK
 RUN mkdir "$ANDROID_HOME" .android \
