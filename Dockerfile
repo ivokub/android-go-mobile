@@ -3,7 +3,7 @@
 FROM openjdk:11
 
 
-ENV SDK_URL="https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip" \
+ENV SDK_URL="https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip" \
     ANDROID_HOME="/usr/local/android-sdk" \
     ANDROID_SDK=$ANDROID_HOME \
     ANDROID_VERSION=29 \
@@ -15,17 +15,17 @@ RUN mkdir "$ANDROID_HOME" .android \
     && curl -o sdk.zip $SDK_URL \
     && unzip sdk.zip \
     && rm sdk.zip \
-    && yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+    && yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager --licenses
 
 ## Install Android Build Tool and Libraries
-RUN $ANDROID_HOME/tools/bin/sdkmanager --update
-RUN $ANDROID_HOME/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" \
+RUN $ANDROID_HOME/cmdline-tools/bin/sdkmanager --update
+RUN $ANDROID_HOME/cmdline-tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" \
     "platforms;android-${ANDROID_VERSION}" \
     "platform-tools"
 
 # Install NDK
 ENV NDK_VER="21.0.6113669"
-RUN $ANDROID_HOME/tools/bin/sdkmanager "ndk;$NDK_VER"
+RUN $ANDROID_HOME/cmdline-tools/bin/sdkmanager "ndk;$NDK_VER"
 RUN ln -sf $ANDROID_HOME/ndk/$NDK_VER $ANDROID_HOME/ndk-bundle
 
 # Go section of this Dockerfile from Docker golang: https://github.com/docker-library/golang/blob/master/1.10/alpine3.8/Dockerfile
